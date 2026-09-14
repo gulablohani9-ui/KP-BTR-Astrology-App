@@ -1,0 +1,26 @@
+name: Build APK
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install Buildozer and dependencies
+      run: |
+        pip install buildozer cython virtualenv
+        sudo apt-get update
+        sudo apt-get install -y build-essential libltdl-dev libffi-dev libssl-dev python3-dev zlib1g-dev openjdk-11-jdk unzip
+    - name: Build with Buildozer
+      run: buildozer android debug
+    - name: Upload APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: KPBTR-App
+        path: bin/*.apk

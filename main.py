@@ -12,8 +12,9 @@ class KPBTRApp(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(orientation='vertical', padding=10, spacing=10, **kwargs)
         
-        # Swiss Ephemeris Setup (ephe फोल्डर से डेटा लेगा)
+        # Swiss Ephemeris Setup
         try:
+            # यह महत्वपूर्ण है: कोड ephe फ़ोल्डर की तलाश करेगा
             swe.set_ephe_path('./ephe')
             swe.set_sid_mode(swe.SIDM_KRISHNAMURTI)
         except Exception as e:

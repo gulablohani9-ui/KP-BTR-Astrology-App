@@ -12,15 +12,15 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-    - name: Install Buildozer and dependencies
+    - name: Install Buildozer and Dependencies
       run: |
         pip install buildozer cython virtualenv
         sudo apt-get update
-        sudo apt-get install -y build-essential libltdl-dev libffi-dev libssl-dev python3-dev zlib1g-dev openjdk-11-jdk unzip
+        sudo apt-get install -y build-essential libltdl-dev libffi-dev libssl-dev python3-dev zlib1g-dev openjdk-11-jdk unzip zip
     - name: Build with Buildozer
-      run: buildozer android debug
+      run: yes | buildozer android debug
     - name: Upload APK
       uses: actions/upload-artifact@v2
       with:
-        name: KPBTR-App
+        name: KPBTR-App-APK
         path: bin/*.apk
